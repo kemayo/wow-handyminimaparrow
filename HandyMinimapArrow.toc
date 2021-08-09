@@ -5,6 +5,6 @@
 ## SavedVariables: HandyMinimapArrowDB
 ## Version: 1
 
-## X-Curse-Project-ID: 
+## X-Curse-Project-ID: 513744
 
 addon.lua
