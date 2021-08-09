@@ -23,7 +23,7 @@ local setDefaults
 function ns:ADDON_LOADED(event, addon)
     if addon == myname then
         _G[myname.."DB"] = setDefaults(_G[myname.."DB"] or {}, {
-            scale = 0.7,
+            scale = 0.6,
             atlas = "minimaparrow"
         })
         db = _G[myname.."DB"]
