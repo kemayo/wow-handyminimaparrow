@@ -29,13 +29,13 @@ function ns:ADDON_LOADED(event, addon)
         db = _G[myname.."DB"]
         self:UnregisterEvent("ADDON_LOADED")
 
-        self:RegisterEvent("PLAYER_ENTERING_WORLD")
+        self.arrow = self:CreateArrow()
+        Minimap:SetPlayerTexture([[]])
     end
 end
 ns:RegisterEvent("ADDON_LOADED")
 
-function ns:PLAYER_ENTERING_WORLD()
-    Minimap:SetPlayerTexture([[]])
+function ns:CreateArrow()
     local arrow = CreateFrame("Frame", "HMAArrow", Minimap)
     arrow:SetFrameStrata("MEDIUM")
     arrow:SetPoint("CENTER")
@@ -77,6 +77,8 @@ function ns:PLAYER_ENTERING_WORLD()
     end)
 
     arrow:Show()
+
+    return arrow
 end
 
 --
