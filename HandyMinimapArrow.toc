@@ -1,4 +1,4 @@
-## Interface: 90105
+## Interface: 90200
 ## Title: Handy Minimap Arrow
 ## Author: Kemayo
 ## Notes: Put an arrow higher up on the minimap, so other addons won't overlap it
