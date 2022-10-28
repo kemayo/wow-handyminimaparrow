@@ -5,6 +5,9 @@ local isClassic = WOW_PROJECT_ID ~= WOW_PROJECT_MAINLINE
 
 function ns.Print(...) print("|cFF33FF99".. myfullname.. "|r:", ...) end
 
+-- can't set the default arrow to an empty string, but this is a tiny transparent texture:
+local SPACER = [[Interface\Common\Spacer]]
+
 -- events
 local f = CreateFrame("Frame")
 f:SetScript("OnEvent", function(_, event, ...)
@@ -24,13 +27,13 @@ function ns:ADDON_LOADED(event, addon)
     if addon == myname then
         _G[myname.."DB"] = setDefaults(_G[myname.."DB"] or {}, {
             scale = 0.6,
-            atlas = "minimaparrow"
+            atlas = "minimaparrow",
         })
         db = _G[myname.."DB"]
         self:UnregisterEvent("ADDON_LOADED")
 
         self.arrow = self:CreateArrow()
-        Minimap:SetPlayerTexture([[]])
+        Minimap:SetPlayerTexture(SPACER)
     end
 end
 ns:RegisterEvent("ADDON_LOADED")
@@ -39,7 +42,7 @@ function ns:CreateArrow()
     local arrow = CreateFrame("Frame", "HMAArrow", Minimap)
     arrow:SetFrameStrata("MEDIUM")
     arrow:SetPoint("CENTER")
-    arrow:SetSize(32, 32)
+    arrow:SetSize(10, 10)
     arrow.texture = arrow:CreateTexture(nil, "OVERLAY")
     -- arrow.texture:SetTexture([[Interface\Minimap\MinimapArrow]])
     arrow.texture:SetAtlas(db.atlas, true)
@@ -63,7 +66,7 @@ function ns:CreateArrow()
         if facing == arrow.facing then return end
         if facing then
             if arrow.facing == nil then
-                Minimap:SetPlayerTexture([[]])
+                Minimap:SetPlayerTexture(SPACER)
             end
             arrow.facing = facing
             arrow.texture:SetRotation(facing)
