@@ -22,14 +22,16 @@ end
 function ns:UnregisterEvent(...) for i=1,select("#", ...) do f:UnregisterEvent((select(i, ...))) end end
 
 local setDefaults
+ns.defaults = {
+    scale = 1,
+    atlas = "UI-HUD-Minimap-Arrow-Player",
+}
 
 function ns:ADDON_LOADED(event, addon)
     if addon == myname then
-        _G[myname.."DB"] = setDefaults(_G[myname.."DB"] or {}, {
-            scale = 0.6,
-            atlas = "minimaparrow",
-        })
+        _G[myname.."DB"] = setDefaults(_G[myname.."DB"] or {}, ns.defaults)
         db = _G[myname.."DB"]
+        ns.db = db
         self:UnregisterEvent("ADDON_LOADED")
 
         self.arrow = self:CreateArrow()
