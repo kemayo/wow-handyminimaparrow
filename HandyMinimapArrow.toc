@@ -8,3 +8,4 @@
 ## X-Curse-Project-ID: 513744
 
 addon.lua
+config.lua
