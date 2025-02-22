@@ -75,7 +75,7 @@ function ns:CreateArrow()
             arrow.texture:Show()
         else
             -- Somewhere this is protected, hide so any arrow at all is visible
-            Minimap:SetPlayerTexture([[Interface\Minimap\MinimapArrow]])
+            Minimap:SetPlayerTexture([[Interface\AddOns\HandyMinimapArrow\MinimapArrow2x.png]])
             arrow.facing = nil
             arrow.texture:Hide()
         end
