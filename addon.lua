@@ -27,6 +27,8 @@ ns.defaults = {
     atlas = "UI-HUD-Minimap-Arrow-Player",
 }
 
+local SetPlayerTexture = Minimap.SetPlayerTexture and function(...) Minimap:SetPlayerTexture(...) end or function() end
+
 function ns:ADDON_LOADED(event, addon)
     if addon == myname then
         _G[myname.."DB"] = setDefaults(_G[myname.."DB"] or {}, ns.defaults)
@@ -35,7 +37,7 @@ function ns:ADDON_LOADED(event, addon)
         self:UnregisterEvent("ADDON_LOADED")
 
         self.arrow = self:CreateArrow()
-        Minimap:SetPlayerTexture(SPACER)
+        SetPlayerTexture(SPACER)
     end
 end
 ns:RegisterEvent("ADDON_LOADED")
@@ -68,14 +70,14 @@ function ns:CreateArrow()
         if facing == arrow.facing then return end
         if facing then
             if arrow.facing == nil then
-                Minimap:SetPlayerTexture(SPACER)
+                SetPlayerTexture(SPACER)
             end
             arrow.facing = facing
             arrow.texture:SetRotation(facing)
             arrow.texture:Show()
         else
             -- Somewhere this is protected, hide so any arrow at all is visible
-            Minimap:SetPlayerTexture([[Interface\AddOns\HandyMinimapArrow\MinimapArrow2x.png]])
+            SetPlayerTexture([[Interface\AddOns\HandyMinimapArrow\MinimapArrow2x.png]])
             arrow.facing = nil
             arrow.texture:Hide()
         end
